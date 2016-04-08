@@ -1,0 +1,21 @@
+nginx:
+    build: ./nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/srv/nginx/magento.apdev.local
+    links:
+      - mysql
+
+mysql:
+    build: ./mysql
+    ports:
+      - "3606:3606"
+    volumes:
+      - /tmp/data/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: magento
+      MYSQL_USER: magento
+      MYSQL_PASSWORD: magento
+      TERM: xterm
